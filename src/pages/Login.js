@@ -1,24 +1,39 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Apple, ArrowRight } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { Link } from 'react-router-dom';
+import logo from '../frontier_logo.png';
+import profileimg from '../profileimg.svg';
+
+function Button({ children, className, ...props }) {
+    return (
+      <button className={`py-2 px-4 rounded-lg ${className}`} {...props}>
+        {children}
+      </button>
+    );
+  }
+
+  function LoginButton() {
+    return (
+      <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+        <Link to="/login" className="text-white">Log In</Link>
+      </button>
+    );
+}
 
 export default function Component() {
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
       {/* Header */}
-      <header className="p-4">
+      <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="bg-red-500 text-white px-3 py-1 rounded-lg font-bold">
-              Frontier
-            </div>
-          </Link>
-          <div className="flex items-center space-x-2">
-            <Button variant="ghost">Login / Signup</Button>
+          <div className="flex items-center space-x-3">
+            <img src={logo} className="w-16 h-16" alt="logo" />
+            <p className="text-2xl font-bold text-white">Frontier Product Services</p>
+          </div>
+          <div className="flex items-center space-x-6">
+            <LoginButton />
+            <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
           </div>
         </nav>
       </header>
@@ -33,14 +48,24 @@ export default function Component() {
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
-              <Input id="email" type="email" required />
+              <input
+  id="email"
+  type="email"
+  required
+  className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+/>
             </div>
             
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
-              <Input id="password" type="password" required />
+              <input
+  id="password"
+  type="password"
+  required
+  className="block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+/>
             </div>
 
             <div className="relative flex items-center justify-center text-sm">

@@ -1,25 +1,67 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
+import { Link } from 'react-router-dom';
+import logo from '../frontier_logo.png';
+import profileimg from '../profileimg.svg';
+
+
 import { Apple, ArrowRight, ShoppingCart } from 'lucide-react'
-import Link from "next/link"
+
+function Card({ children, className = "", ...props }) {
+    return (
+      <div
+        className={`p-4 border rounded-lg shadow-sm bg-white ${className}`}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+  
+
+function Input({ type = "text", className, ...props }) {
+    return (
+      <input
+        type={type}
+        className={`border rounded-lg px-3 py-2 w-full ${className}`}
+        {...props}
+      />
+    );
+  }
+
+function Button({ children, className, ...props }) {
+    return (
+      <button className={`py-2 px-4 rounded-lg ${className}`} {...props}>
+        {children}
+      </button>
+    );
+  }
+
+  function LoginButton() {
+    return (
+      <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+        <Link to="/login" className="text-white">Log In</Link>
+      </button>
+    );
+}
 
 export default function Component() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="flex items-center justify-between p-4 bg-white border-b">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="bg-[#E31837] text-white px-3 py-1 rounded-md font-bold">
-            Frontier
+      <header className="bg-header-blue p-4">
+        <nav className="flex items-center justify-between container mx-auto">
+          <div className="flex items-center space-x-3">
+            <Link to='/'>
+            <img src={logo} className="w-16 h-16" alt="logo" />
+            </Link>
+            <p className="text-2xl font-bold text-white">Frontier Product Services</p>
+            
           </div>
-        </Link>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" asChild>
-            <Link href="/login">Login / Signup</Link>
-          </Button>
-        </div>
+          <div className="flex items-center space-x-6">
+            <LoginButton />
+            <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
+          </div>
+        </nav>
       </header>
       
       <main className="container mx-auto px-4 py-8">

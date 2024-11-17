@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/Acordion.js';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Acordion.js';
 import { User } from 'lucide-react';
 import logo from '../frontier_logo.png';
+import { Routes, Route } from 'react-router-dom';
+import Shop from './Shop.js'
+
+import Login from  './Login.js'
+import profileimg from '../profileimg.svg';
+const bg = './bg.jpg'; // Or use an imported image, like `import bg from './path/to/image.jpg';`
+
 
 // Button Component
 function Button({ children, className, ...props }) {
@@ -15,13 +22,11 @@ function Button({ children, className, ...props }) {
 
 // Login Button Component
 function LoginButton() {
-  return (
-    <button className="bg-white/10 text-white py-2 px-4 rounded-full hover:bg-white/20">
-      <Link to="/login" className="text-white">
-        Log In
-      </Link>
-    </button>
-  );
+    return (
+      <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+        <Link to="/login" className="text-white">Log In</Link>
+      </button>
+    );
 }
 
 function Homepage() {
@@ -37,42 +42,53 @@ function Homepage() {
       <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
           <div className="flex items-center space-x-3">
+            <Link to='/'>
             <img src={logo} className="w-16 h-16" alt="logo" />
+            </Link>
             <p className="text-2xl font-bold text-white">Frontier Product Services</p>
+            
           </div>
           <div className="flex items-center space-x-6">
             <LoginButton />
+            <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
           </div>
         </nav>
       </header>
 
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+
       {/* Hero Section */}
-      <div className="relative">
-        <img
-          src="/placeholder.svg?height=400&width=1440"
-          alt="Gaming setup with RGB lighting"
-          className="w-full h-[400px] object-cover"
-        />
-        <Button
-          className="absolute top-4 left-4 bg-[#7FD4D4] hover:bg-[#6BC4C4] text-black font-bold shadow-lg flex items-center gap-2"
-        >
-          NEED HELP? <User className="h-5 w-5" />
-        </Button>
-      </div>
+      <div
+  className="w-full h-[400px] bg-gray-400"
+  aria-label="RGB lighting"
+  style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+>
+  <Button className="absolute top-40 left-8 bg-[#7FD4D4] hover:bg-[#6BC4C4] text-black font-bold shadow-lg flex items-center gap-2">
+    NEED HELP? <User className="h-10 w-8" />
+  </Button>
+</div>
+
+
 
       {/* Accordion Section */}
       <div className="container mx-auto px-4 py-8 space-y-4 ">
         <Accordion type="single" collapsible className="space-y-4">
-          <AccordionItem value="glossary-1" className="border rounded-lg bg-white hover:bg-gray-100">
-            <AccordionTrigger
+          <AccordionItem value="shop-1" className="border rounded-lg bg-white hover:bg-gray-100">
+            <AccordionTrigger value="shop" 
               className="px-4 py-2 font-semibold text-gray-700 "
-              onClick={() => toggleAccordion('glossary-1')}
+              
               aria-expanded={activeAccordion === 'glossary-1'}
             >
-              Glossary
+                <Link to="/shop" >
+              
+            
+              Product Reccomendations
+              </Link>
             </AccordionTrigger>
             <AccordionContent className="px-4 py-2 text-gray-600">
-              Glossary content goes here.
+              See what products are right for you!
             </AccordionContent>
           </AccordionItem>
 
@@ -82,10 +98,10 @@ function Homepage() {
               onClick={() => toggleAccordion('glossary-2')}
               aria-expanded={activeAccordion === 'glossary-2'}
             >
-              Glossary
+              Our Catalogue
             </AccordionTrigger>
             <AccordionContent className="px-4 py-2 text-gray-600">
-              Additional glossary content.
+              Browse through all of our products
             </AccordionContent>
           </AccordionItem>
 
@@ -98,7 +114,9 @@ function Homepage() {
               FAQ
             </AccordionTrigger>
             <AccordionContent className="px-4 py-2 text-gray-600">
+            <Link to="https://frontier.com/helpcenter" >
               Frequently asked questions and answers.
+              </Link>
             </AccordionContent>
           </AccordionItem>
 
@@ -108,10 +126,10 @@ function Homepage() {
               onClick={() => toggleAccordion('glossary-3')}
               aria-expanded={activeAccordion === 'glossary-3'}
             >
-              Glossary
+              Index
             </AccordionTrigger>
-            <AccordionContent className="px-4 py-2 text-gray-600">
-              More glossary content.
+            <AccordionContent className="px-4 py-2 text-gray-600 hover:bg-gray-100">
+              Understand complex terminology
             </AccordionContent>
           </AccordionItem>
         </Accordion>
