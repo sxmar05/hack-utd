@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+import logo from './frontier_logo.png';
 import './App.css';
+import './pages/Homepage.js'
 
 function App() {
   return (
