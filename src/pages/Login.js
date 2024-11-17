@@ -28,8 +28,11 @@ export default function Component() {
       <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
           <div className="flex items-center space-x-3">
+            <Link to='/'>
             <img src={logo} className="w-16 h-16" alt="logo" />
+            </Link>
             <p className="text-2xl font-bold text-white">Frontier Product Services</p>
+            
           </div>
           <div className="flex items-center space-x-6">
             <LoginButton />
@@ -108,7 +111,7 @@ export default function Component() {
                 Forgot Password?
               </Link>
               <div className="space-x-3">
-                <Link href="/signup" className="text-sm text-gray-600 hover:text-gray-900">
+                <Link to="/signup" className="text-sm text-gray-600 hover:text-gray-900">
                   Sign Up
                 </Link>
                 <Button className="bg-red-500 hover:bg-red-600">
